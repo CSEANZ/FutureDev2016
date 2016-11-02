@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DXNewsAPI.Model.Contract;
+using DXNewsAPI.Model.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.Swagger.Model;
 
 namespace DXNewsAPI
 {
@@ -40,6 +43,23 @@ namespace DXNewsAPI
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+
+            services.AddScoped<IDataService, SampleDataService>();
+
+            services.AddSwaggerGen(options =>
+            {
+
+            });
+
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Info
+                {
+                    Version = "v1",
+                    Title = "DXNewsAPI",
+                    Description = "For all the news from DX Australia"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +90,12 @@ namespace DXNewsAPI
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
+            app.UseSwaggerUi();
         }
     }
 }

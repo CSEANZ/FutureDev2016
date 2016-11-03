@@ -12,6 +12,7 @@ namespace DXNewsApp
         public MainPage()
         {
             InitializeComponent();
+            
         }
     }
 }

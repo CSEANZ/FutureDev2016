@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using DXNewsAPI.Model.Contract;
 using DXNewsAPI.Model.Service;
+using DXNewsAPI.Model.SetupHelpers;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +38,8 @@ namespace DXNewsAPI
 
         public IConfigurationRoot Configuration { get; }
 
+        private AuthCallbackHandler _callbackHandler;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -60,10 +64,12 @@ namespace DXNewsAPI
                     Description = "For all the news from DX Australia"
                 });
             });
+
+            services.AddAuthentication(sharedOptions => sharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -83,6 +89,13 @@ namespace DXNewsAPI
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
+
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions());
+
+            _callbackHandler = new AuthCallbackHandler();
+
+            app.UseDxAuth(serviceProvider, Configuration, _callbackHandler);
 
             app.UseMvc(routes =>
             {

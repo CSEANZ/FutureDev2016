@@ -26,7 +26,7 @@
                                      BackgroundColor="{StaticResource newsListOverlay}"
                                      Padding="10,5">
                             <Label Style="{StaticResource newsListTitle}" Text="{Binding Title}" />
-                            <Label Style="{StaticResource newsListAbstract}" Text="{Binding Abstract}" />
+                            <Label Style="{StaticResource newsListAbstract}" Text="{Binding Abstract}" LineBreakMode="TailTruncation" />
                         </StackLayout>
                     </Grid>
                 </ViewCell>

@@ -250,3 +250,5 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/src/DXNewsApp/DXNewsApp/DXNewsApp.Droid/DXNewsApp.Droid.csproj.bak
+/src/DXNewsApp/DXNewsApp/DXNewsApp.iOS/DXNewsApp.iOS.csproj.bak

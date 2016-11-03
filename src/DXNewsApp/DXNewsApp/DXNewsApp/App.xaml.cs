@@ -37,6 +37,8 @@ namespace DXNewsApp
         static MainViewModel mainViewModel;
 
         public static MainViewModel ViewModel
-            => mainViewModel ?? (mainViewModel = new MainViewModel(new DXNewsDesignData()));
+            => mainViewModel 
+            ?? (mainViewModel = new MainViewModel(
+                new DXNewsDesignData(new Uri("http://dxnews.azurewebsites.net/"))));
     }
 }

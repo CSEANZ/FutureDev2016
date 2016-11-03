@@ -12,6 +12,14 @@ namespace DXNewsApp
 {
     public class DXNewsDesignData : IDXNewsAppClient
     {
+        public DXNewsDesignData()
+        {
+        }
+
+        public DXNewsDesignData(Uri address)
+        {
+        }
+
         public Uri BaseUri { get; set; }
 
         public ServiceClientCredentials Credentials { get; set; }

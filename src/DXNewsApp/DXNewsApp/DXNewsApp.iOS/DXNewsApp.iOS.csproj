@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DXNewsApp.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>DXNewsApp.iOS</AssemblyName>
+    <AssemblyName>DXNewsAppiOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>

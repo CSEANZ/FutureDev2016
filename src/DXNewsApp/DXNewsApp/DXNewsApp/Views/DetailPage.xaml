@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="DXNewsApp.DetailPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="{Binding Title}">
+    
+    <ScrollView>
+        <StackLayout>
+            <Image Aspect="AspectFill"
+                   HeightRequest="250"
+                   Source="{Binding ImageUrl}" />
+            <Label FontSize="Large"
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding Title}" />
+            <Label Margin="10,10,10,10" Text="{Binding Body}" />
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

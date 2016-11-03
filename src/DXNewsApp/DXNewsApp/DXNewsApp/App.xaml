@@ -5,6 +5,33 @@
   <Application.Resources>
 
     <!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <!-- Application resource dictionary -->
+            <Color x:Key="bgColor">#c0c0c0</Color>
+            <Color x:Key="fgColor">#606060</Color>
 
-  </Application.Resources>
+            <Color x:Key="newsListOverlay">#66000000</Color>
+
+            <Style x:Key="newsListTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="newsListAbstract" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+
+
+
+            <Style x:Key="baseLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="infoLabelStyle" BasedOn="{StaticResource baseLabelStyle}" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+
+    </Application.Resources>
 </Application>

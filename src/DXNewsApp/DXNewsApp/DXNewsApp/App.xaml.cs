@@ -13,7 +13,7 @@ namespace DXNewsApp
         {
             InitializeComponent();
 
-            MainPage = new DXNewsApp.MainPage();
+            MainPage = new NavigationPage(new DXNewsApp.MainPage());
         }
 
         protected override void OnStart()
@@ -30,5 +30,13 @@ namespace DXNewsApp
         {
             // Handle when your app resumes
         }
+    }
+
+    public static class ViewModelLocator
+    {
+        static MainViewModel mainViewModel;
+
+        public static MainViewModel ViewModel
+            => mainViewModel ?? (mainViewModel = new MainViewModel(new DXNewsDesignData()));
     }
 }

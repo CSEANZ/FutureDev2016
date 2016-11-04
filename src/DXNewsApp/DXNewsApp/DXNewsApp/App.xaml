@@ -6,31 +6,39 @@
 
     <!-- Application resource dictionary -->
         <ResourceDictionary>
-            <!-- Application resource dictionary -->
-            <Color x:Key="bgColor">#c0c0c0</Color>
-            <Color x:Key="fgColor">#606060</Color>
-
             <Color x:Key="newsListOverlay">#66000000</Color>
+
+            <Style x:Key="heroImage" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFill"/>
+                <Setter Property="HeightRequest" Value="250"/>
+            </Style>
+
+            <Style x:Key="newsTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+
+            <Style x:Key="newsBody" TargetType="Label">
+                <Setter Property="Margin" Value="10"/>
+            </Style>
 
             <Style x:Key="newsListTitle" TargetType="Label">
                 <Setter Property="FontSize" Value="22" />
                 <Setter Property="TextColor" Value="White"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
             </Style>
 
             <Style x:Key="newsListAbstract" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
             </Style>
 
-
-
-            <Style x:Key="baseLabelStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="22" />
-                <Setter Property="TextColor" Value="White"/>
+            <Style x:Key="newsListBox" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{StaticResource newsListOverlay}"/>
+                <Setter Property="Padding" Value="10,5"/>
             </Style>
 
-            <Style x:Key="infoLabelStyle" BasedOn="{StaticResource baseLabelStyle}" TargetType="Label">
-                <Setter Property="FontAttributes" Value="Bold" />
-            </Style>
         </ResourceDictionary>
 
     </Application.Resources>

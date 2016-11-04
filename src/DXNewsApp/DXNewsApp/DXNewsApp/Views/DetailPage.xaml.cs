@@ -13,8 +13,8 @@ namespace DXNewsApp
     {
         public DetailPage(NewsItem item)
         {
-            BindingContext = item;
             InitializeComponent();
+            BindingContext = item;
         }
     }
 }

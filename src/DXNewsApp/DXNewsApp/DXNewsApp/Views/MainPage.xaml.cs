@@ -18,7 +18,10 @@ namespace DXNewsApp
 
         void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
+            // get the news item that was tapped on
             var newsItem = (NewsItem)e.Item;
+
+            // navigate to the details page, passing the new item
             this.Navigation.PushAsync(new DetailPage(newsItem));
         }
     }

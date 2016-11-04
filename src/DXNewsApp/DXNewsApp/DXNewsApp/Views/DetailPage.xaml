@@ -2,17 +2,16 @@
 <ContentPage x:Class="DXNewsApp.DetailPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DXNewsApp"
+             xmlns:design="clr-namespace:DXNewsApp;assembly=DXNewsApp"
+             BindingContext="{x:Static design:ViewModelLocator.ViewModel}"
              Title="{Binding Title}">
-    
+
     <ScrollView>
         <StackLayout>
-            <Image Aspect="AspectFill"
-                   HeightRequest="250"
-                   Source="{Binding ImageUrl}" />
-            <Label FontSize="Large"
-                   HorizontalTextAlignment="Center"
-                   Text="{Binding Title}" />
-            <Label Margin="10,10,10,10" Text="{Binding Body}" />
+            <Image Source="{Binding ImageUrl}" Style="{StaticResource heroImage}"/>
+            <Label Text="{Binding Title}" Style="{StaticResource newsTitle}"/>    
+            <Label Text="{Binding Body}" Style="{StaticResource newsBody}"/>
         </StackLayout>
     </ScrollView>
     

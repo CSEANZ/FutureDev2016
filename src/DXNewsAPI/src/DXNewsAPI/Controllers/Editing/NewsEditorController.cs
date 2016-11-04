@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DXNewsAPI.Model.Contract;
 using DXNewsAPI.Model.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,12 @@ namespace DXNewsAPI.Controllers.Editing
 {
     public class NewsEditorController : Controller
     {
+        private readonly ITableStorageRepo _tableStorageRepo;
+
+        public NewsEditorController(ITableStorageRepo tableStorageRepo)
+        {
+            _tableStorageRepo = tableStorageRepo;
+        }
         // GET: NewsEditor
         public ActionResult Index()
         {
@@ -30,34 +37,13 @@ namespace DXNewsAPI.Controllers.Editing
         // POST: NewsEditor/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task <ActionResult> Create(NewsItem item)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: NewsEditor/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: NewsEditor/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+                var result = await _tableStorageRepo.InsertNewsItem(item);
 
                 return RedirectToAction("Index");
             }
@@ -66,6 +52,8 @@ namespace DXNewsAPI.Controllers.Editing
                 return View();
             }
         }
+
+      
 
         // GET: NewsEditor/Delete/5
         public ActionResult Delete(int id)

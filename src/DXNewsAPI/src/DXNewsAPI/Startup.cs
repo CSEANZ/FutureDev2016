@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using DXNewsAPI.Model.Contract;
+using DXNewsAPI.Model.Entity;
+using DXNewsAPI.Model.Repo;
 using DXNewsAPI.Model.Service;
 using DXNewsAPI.Model.SetupHelpers;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -11,6 +14,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Swashbuckle.Swagger.Model;
 
 namespace DXNewsAPI
@@ -46,9 +50,18 @@ namespace DXNewsAPI
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
+            services.Configure<TableStorageSettings>(Configuration.GetSection("ConnectionStrings:TableStorage"));
+
             services.AddMvc();
 
             services.AddScoped<IDataService, SampleDataService>();
+            services.AddSingleton<ITableStorageRepo, TableStorageRepo>();
+
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.CreateMap<NewsItem, NewsItemTableEntity>();
+                cfg.CreateMap<NewsItemTableEntity, NewsItem>();
+            });
 
             services.AddSwaggerGen(options =>
             {
@@ -66,13 +79,18 @@ namespace DXNewsAPI
             });
 
             services.AddAuthentication(sharedOptions => sharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider, ITableStorageRepo tableStore)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            //I am not a fan of this, but I want it done in startup, before and end-user-developer code. 
+            tableStore.Init().GetAwaiter().GetResult();
 
             app.UseApplicationInsightsRequestTelemetry();
 
@@ -89,7 +107,6 @@ namespace DXNewsAPI
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
-
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions());
 

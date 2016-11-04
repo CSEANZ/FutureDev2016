@@ -34,7 +34,10 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "WindowsAzure.Storage": "7.2.1",
+    "AutoMapper": "5.1.1",
+    "AutoMapper.Extensions.Microsoft.DependencyInjection": "1.1.2"
   },
 
   "tools": {

@@ -14,12 +14,16 @@ namespace DXNewsApp
 
         public IList<NewsItem> NewsItems { get; private set; }
 
-        public string Message { get; set; } = "Hello";
-
         public MainViewModel(IDXNewsAppClient client)
         {
             this.client = client;
             NewsItems = new ObservableCollection<NewsItem>(client.GetNews());
         }
+
+        // these properties are really just here for designer data
+        public string Body { get { return NewsItems.First().Body; } }
+        public string ImageUrl { get { return NewsItems.First().ImageUrl; } }
+        public string Title { get { return NewsItems.First().Title; } }
+
     }
 }

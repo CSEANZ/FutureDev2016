@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage x:Class="DXNewsApp.MainPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,13 +8,16 @@
              Title="DX News">
 
     <!-- list of news items-->
-    <ListView ItemTapped="Handle_ItemTapped"
-              ItemsSource="{Binding NewsItems}"
-              SeparatorVisibility="None"
-              HasUnevenRows="true">
+    <ListView x:Name="newsListView" 
+            ItemsSource="{Binding NewsItems}"
+			ItemTapped="Handle_ItemTapped"
+            SeparatorVisibility="None"
+            HasUnevenRows="true">
+		
         <!-- template for how each row looks -->
         <ListView.ItemTemplate>
             <DataTemplate>
+				
                 <!-- layout for each of the cells -->
                 <ViewCell>
                     <Grid ColumnSpacing="0" RowSpacing="0">

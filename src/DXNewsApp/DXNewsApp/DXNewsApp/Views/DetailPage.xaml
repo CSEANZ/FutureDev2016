@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="DXNewsApp.DetailPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DXNewsApp"
+             xmlns:design="clr-namespace:DXNewsApp;assembly=DXNewsApp"
+             BindingContext="{x:Static design:ViewModelLocator.ViewModel}"
+             Title="{Binding Title}">
+
+    <ScrollView>
+       <StackLayout>
+            <Image Source="{Binding ImageUrl}" Style="{StaticResource heroImage}"/>
+            <Label Text="{Binding Title}" Style="{StaticResource newsTitle}"/>    
+            <Label Text="{Binding Body}" Style="{StaticResource newsBody}"/>
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

@@ -9,5 +9,6 @@ namespace DXNewsAPI.Model.Entity
     {
         public string ConnectionString { get; set; }
         public string NewsTableId { get; set; }
+        public string NewsPartition { get; set; }
     }
 }

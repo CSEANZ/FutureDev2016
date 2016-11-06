@@ -59,8 +59,12 @@ namespace DXNewsAPI
 
             services.AddAutoMapper(cfg =>
             {
-                cfg.CreateMap<NewsItem, NewsItemTableEntity>();
-                cfg.CreateMap<NewsItemTableEntity, NewsItem>();
+                //Map the Id field on the NewsItem to and from the RowKey field on the Table Entity version of it
+                cfg.CreateMap<NewsItem, NewsItemTableEntity>()
+                  .ForMember(dest => dest.RowKey, opt => opt.MapFrom(src => src.Id));
+
+                cfg.CreateMap<NewsItemTableEntity, NewsItem>()
+                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src=>src.RowKey));
             });
 
             services.AddSwaggerGen(options =>
@@ -79,8 +83,6 @@ namespace DXNewsAPI
             });
 
             services.AddAuthentication(sharedOptions => sharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
-
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

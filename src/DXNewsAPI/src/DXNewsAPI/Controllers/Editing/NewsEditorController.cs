@@ -17,15 +17,41 @@ namespace DXNewsAPI.Controllers.Editing
             _tableStorageRepo = tableStorageRepo;
         }
         // GET: NewsEditor
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(new List<NewsItem>());
+            return View(await _tableStorageRepo.GetNewsItems());
         }
 
         // GET: NewsEditor/Details/5
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+        public async Task<ActionResult> Edit(string id)
+        {
+            return View(await _tableStorageRepo.GetNewsItemById(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(NewsItem item)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    var result = await _tableStorageRepo.UpdateNewsItem(item);
+                }
+                
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: NewsEditor/Create
@@ -43,7 +69,10 @@ namespace DXNewsAPI.Controllers.Editing
             {
                 // TODO: Add insert logic here
 
-                var result = await _tableStorageRepo.InsertNewsItem(item);
+                if (ModelState.IsValid)
+                {
+                    var result = await _tableStorageRepo.InsertNewsItem(item);
+                }
 
                 return RedirectToAction("Index");
             }
@@ -56,20 +85,19 @@ namespace DXNewsAPI.Controllers.Editing
       
 
         // GET: NewsEditor/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(string id)
         {
-            return View();
+            return View(await _tableStorageRepo.GetNewsItemById(id));
         }
 
         // POST: NewsEditor/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(NewsItem newsItem)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                await _tableStorageRepo.DeleteNewsItem(newsItem.Id);
                 return RedirectToAction("Index");
             }
             catch

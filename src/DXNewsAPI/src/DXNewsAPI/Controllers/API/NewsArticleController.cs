@@ -25,6 +25,7 @@ namespace DXNewsAPI.Controllers.API
         [SwaggerOperation("GetNews")]
         [ProducesResponseType(typeof(IEnumerable<NewsItem>), 200)]
         [HttpGet]
+
         public async Task<IActionResult> Get()
         {
             return Ok(await _tableStorageRepo.GetNewsItems());
@@ -33,6 +34,7 @@ namespace DXNewsAPI.Controllers.API
         [SwaggerOperation("LatestNewsItem")]
         [ProducesResponseType(typeof(NewsItem), 200)]
         [HttpGet]
+        [Route("GetLatest")]
         public async Task<IActionResult> GetLatest()
         {
             var latest = await _tableStorageRepo.GetNewsItems(1);

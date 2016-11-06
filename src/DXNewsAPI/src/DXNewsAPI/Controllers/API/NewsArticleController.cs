@@ -14,11 +14,12 @@ namespace DXNewsAPI.Controllers.API
     [Route("api/[controller]")]
     public class NewsArticleController : Controller
     {
-        private readonly IDataService _sampleDataService;
+        private readonly ITableStorageRepo _tableStorageRepo;
+        
 
-        public NewsArticleController(IDataService sampleDataService)
+        public NewsArticleController(ITableStorageRepo tableStorageRepo)
         {
-            _sampleDataService = sampleDataService;
+            _tableStorageRepo = tableStorageRepo;
         }
 
         [SwaggerOperation("GetNews")]
@@ -26,7 +27,17 @@ namespace DXNewsAPI.Controllers.API
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _sampleDataService.SampleDataNews());
+            return Ok(await _tableStorageRepo.GetNewsItems());
+        }
+
+        [SwaggerOperation("LatestNewsItem")]
+        [ProducesResponseType(typeof(NewsItem), 200)]
+        [HttpGet]
+        public async Task<IActionResult> GetLatest()
+        {
+            var latest = await _tableStorageRepo.GetNewsItems(1);
+            var item = latest?.FirstOrDefault();
+            return Ok(item);
         }
 
     }

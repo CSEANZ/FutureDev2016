@@ -85,7 +85,7 @@ namespace DXNewsAPI.Model.Repo
             return newsTableItem;
         }
 
-        public async Task<IList<NewsItem>> GetNewsItems()
+        public async Task<IList<NewsItem>> GetNewsItems(int take = 100)
         {
             string rowKeyToUse = string.Format("{0:D19}", DateTime.MaxValue.Ticks - DateTime.UtcNow.Ticks);
 
@@ -95,6 +95,8 @@ namespace DXNewsAPI.Model.Repo
 
             query = query.Where(TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.GreaterThanOrEqual,
                 rowKeyToUse));
+
+            query = query.Take(take);
 
             TableContinuationToken token = null;
 

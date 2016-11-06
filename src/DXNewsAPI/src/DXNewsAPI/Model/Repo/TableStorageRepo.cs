@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DXNewsAPI.Model.Contract;
 using DXNewsAPI.Model.Entity;
+using DXNewsAPI.Model.Entity.News;
+using DXNewsAPI.Model.Entity.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using NuGet.Packaging;
+using NuGet.Protocol.Core.v3;
 
 namespace DXNewsAPI.Model.Repo
 {
@@ -17,14 +20,16 @@ namespace DXNewsAPI.Model.Repo
     {
         private readonly IOptions<TableStorageSettings> _dbOptions;
         private readonly IMapper _mapper;
+        private readonly INotificationService _notificationService;
 
         private CloudStorageAccount _account;
         private CloudTable _table;
 
-        public TableStorageRepo(IOptions<TableStorageSettings> dbOptions, IMapper mapper)
+        public TableStorageRepo(IOptions<TableStorageSettings> dbOptions, IMapper mapper, INotificationService notificationService)
         {
             _dbOptions = dbOptions;
             _mapper = mapper;
+            _notificationService = notificationService;
 
             _account = CloudStorageAccount.Parse(dbOptions.Value.ConnectionString);
             var tableClient = _account.CreateCloudTableClient();
@@ -47,6 +52,12 @@ namespace DXNewsAPI.Model.Repo
             var insertOp = TableOperation.Insert(te);
 
             var result = await _table.ExecuteAsync(insertOp);
+
+            await _notificationService.NotifySubscribers(new NotifyItem
+            {
+                Id = te.RowKey, 
+                Title = item.Title
+            }.ToJson());
 
             return result.HttpStatusCode == (int)HttpStatusCode.NoContent;
         }

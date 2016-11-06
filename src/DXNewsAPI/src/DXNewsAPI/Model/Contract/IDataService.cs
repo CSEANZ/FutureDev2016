@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DXNewsAPI.Model.Entity;
+using DXNewsAPI.Model.Entity.News;
 
 namespace DXNewsAPI.Model.Contract
 {

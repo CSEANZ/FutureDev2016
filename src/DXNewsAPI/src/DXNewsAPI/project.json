@@ -37,7 +37,8 @@
     },
     "WindowsAzure.Storage": "7.2.1",
     "AutoMapper": "5.1.1",
-    "AutoMapper.Extensions.Microsoft.DependencyInjection": "1.1.2"
+    "AutoMapper.Extensions.Microsoft.DependencyInjection": "1.1.2",
+    "ExtensionGoo": "0.0.3"
   },
 
   "tools": {

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http.Internal;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace DXNewsAPI.Model.Entity
+namespace DXNewsAPI.Model.Entity.News
 {
     public class NewsItem
     {

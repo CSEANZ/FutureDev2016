@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DXNewsAPI.Model.Contract;
 using DXNewsAPI.Model.Entity;
+using DXNewsAPI.Model.Entity.News;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 namespace DXNewsAPI.Controllers.Editing

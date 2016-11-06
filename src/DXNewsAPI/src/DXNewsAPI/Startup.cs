@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DXNewsAPI.Model.Contract;
 using DXNewsAPI.Model.Entity;
+using DXNewsAPI.Model.Entity.News;
+using DXNewsAPI.Model.Entity.Settings;
 using DXNewsAPI.Model.Repo;
 using DXNewsAPI.Model.Service;
 using DXNewsAPI.Model.SetupHelpers;
@@ -51,11 +53,13 @@ namespace DXNewsAPI
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.Configure<TableStorageSettings>(Configuration.GetSection("ConnectionStrings:TableStorage"));
+            services.Configure<NotificationSettings>(Configuration.GetSection("NotificationSettings"));
 
             services.AddMvc();
 
             services.AddScoped<IDataService, SampleDataService>();
             services.AddSingleton<ITableStorageRepo, TableStorageRepo>();
+            services.AddSingleton<INotificationService, NotificationService>();
 
             services.AddAutoMapper(cfg =>
             {

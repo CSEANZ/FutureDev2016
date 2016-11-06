@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace DXNewsAPI.Model.Entity
+namespace DXNewsAPI.Model.Entity.News
 {
     /// <summary>
     /// Table entity for writing to the Azure Storage table. 

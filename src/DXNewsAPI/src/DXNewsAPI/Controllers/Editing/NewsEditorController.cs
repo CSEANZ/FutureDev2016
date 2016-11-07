@@ -2,23 +2,57 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DXNewsAPI.Model.Contract;
 using DXNewsAPI.Model.Entity;
+using DXNewsAPI.Model.Entity.News;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 namespace DXNewsAPI.Controllers.Editing
 {
     public class NewsEditorController : Controller
     {
-        // GET: NewsEditor
-        public ActionResult Index()
+        private readonly ITableStorageRepo _tableStorageRepo;
+
+        public NewsEditorController(ITableStorageRepo tableStorageRepo)
         {
-            return View(new List<NewsItem>());
+            _tableStorageRepo = tableStorageRepo;
+        }
+        // GET: NewsEditor
+        public async Task<ActionResult> Index()
+        {
+            return View(await _tableStorageRepo.GetNewsItems());
         }
 
         // GET: NewsEditor/Details/5
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+        public async Task<ActionResult> Edit(string id)
+        {
+            return View(await _tableStorageRepo.GetNewsItemById(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(NewsItem item)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    var result = await _tableStorageRepo.UpdateNewsItem(item);
+                }
+                
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: NewsEditor/Create
@@ -30,34 +64,16 @@ namespace DXNewsAPI.Controllers.Editing
         // POST: NewsEditor/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task <ActionResult> Create(NewsItem item)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: NewsEditor/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: NewsEditor/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    var result = await _tableStorageRepo.InsertNewsItem(item);
+                }
 
                 return RedirectToAction("Index");
             }
@@ -66,22 +82,23 @@ namespace DXNewsAPI.Controllers.Editing
                 return View();
             }
         }
+
+      
 
         // GET: NewsEditor/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(string id)
         {
-            return View();
+            return View(await _tableStorageRepo.GetNewsItemById(id));
         }
 
         // POST: NewsEditor/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(NewsItem newsItem)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                await _tableStorageRepo.DeleteNewsItem(newsItem.Id);
                 return RedirectToAction("Index");
             }
             catch

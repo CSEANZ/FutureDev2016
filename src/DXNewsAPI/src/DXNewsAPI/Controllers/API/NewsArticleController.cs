@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DXNewsAPI.Model.Contract;
 using DXNewsAPI.Model.Entity;
+using DXNewsAPI.Model.Entity.News;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.SwaggerGen.Annotations;
 
@@ -14,19 +15,32 @@ namespace DXNewsAPI.Controllers.API
     [Route("api/[controller]")]
     public class NewsArticleController : Controller
     {
-        private readonly IDataService _sampleDataService;
+        private readonly ITableStorageRepo _tableStorageRepo;
+        
 
-        public NewsArticleController(IDataService sampleDataService)
+        public NewsArticleController(ITableStorageRepo tableStorageRepo)
         {
-            _sampleDataService = sampleDataService;
+            _tableStorageRepo = tableStorageRepo;
         }
 
         [SwaggerOperation("GetNews")]
         [ProducesResponseType(typeof(IEnumerable<NewsItem>), 200)]
         [HttpGet]
+
         public async Task<IActionResult> Get()
         {
-            return Ok(await _sampleDataService.SampleDataNews());
+            return Ok(await _tableStorageRepo.GetNewsItems());
+        }
+
+        [SwaggerOperation("LatestNewsItem")]
+        [ProducesResponseType(typeof(NewsItem), 200)]
+        [HttpGet]
+        [Route("GetLatest")]
+        public async Task<IActionResult> GetLatest()
+        {
+            var latest = await _tableStorageRepo.GetNewsItems(1);
+            var item = latest?.FirstOrDefault();
+            return Ok(item);
         }
 
     }

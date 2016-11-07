@@ -18,6 +18,9 @@ namespace DXNewsApp
 
         void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
+            // suppress the highlight on the cell
+            newsListView.SelectedItem = null;
+
             // get the news item that was tapped on
             var newsItem = (NewsItem)e.Item;
 

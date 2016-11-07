@@ -1,4 +1,5 @@
-@model IEnumerable<DXNewsAPI.Model.Entity.NewsItem>
+@using DXNewsAPI.Model.Entity.News
+@model IEnumerable<DXNewsAPI.Model.Entity.News.NewsItem>
 
 @{
     ViewData["Title"] = "Index";
@@ -44,9 +45,9 @@
                 @Html.DisplayFor(modelItem => item.ImageUrl)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Id }) |
+               
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
 }

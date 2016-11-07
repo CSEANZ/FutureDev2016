@@ -252,5 +252,103 @@ namespace DXNewsApp
             }
             return result;
         }
+        
+        /// <param name='cancellationToken'>
+        /// Cancellation token.
+        /// </param>
+        public async Task<HttpOperationResponse<NewsItem>> LatestNewsItemWithOperationResponseAsync(CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // Tracing
+            bool shouldTrace = ServiceClientTracing.IsEnabled;
+            string invocationId = null;
+            if (shouldTrace)
+            {
+                invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                ServiceClientTracing.Enter(invocationId, this, "LatestNewsItemAsync", tracingParameters);
+            }
+            
+            // Construct URL
+            string url = "";
+            url = url + "/api/NewsArticle/GetLatest";
+            string baseUrl = this.BaseUri.AbsoluteUri;
+            // Trim '/' character from the end of baseUrl and beginning of url.
+            if (baseUrl[baseUrl.Length - 1] == '/')
+            {
+                baseUrl = baseUrl.Substring(0, baseUrl.Length - 1);
+            }
+            if (url[0] == '/')
+            {
+                url = url.Substring(1);
+            }
+            url = baseUrl + "/" + url;
+            url = url.Replace(" ", "%20");
+            
+            // Create HTTP transport objects
+            HttpRequestMessage httpRequest = new HttpRequestMessage();
+            httpRequest.Method = HttpMethod.Get;
+            httpRequest.RequestUri = new Uri(url);
+            
+            // Set Credentials
+            if (this.Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await this.Credentials.ProcessHttpRequestAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            
+            // Send Request
+            if (shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(invocationId, httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            HttpResponseMessage httpResponse = await this.HttpClient.SendAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            if (shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(invocationId, httpResponse);
+            }
+            HttpStatusCode statusCode = httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string responseContent = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+            if (statusCode != HttpStatusCode.OK)
+            {
+                HttpOperationException<object> ex = new HttpOperationException<object>();
+                ex.Request = httpRequest;
+                ex.Response = httpResponse;
+                ex.Body = null;
+                if (shouldTrace)
+                {
+                    ServiceClientTracing.Error(invocationId, ex);
+                }
+                throw ex;
+            }
+            
+            // Create Result
+            HttpOperationResponse<NewsItem> result = new HttpOperationResponse<NewsItem>();
+            result.Request = httpRequest;
+            result.Response = httpResponse;
+            
+            // Deserialize Response
+            if (statusCode == HttpStatusCode.OK)
+            {
+                NewsItem resultModel = new NewsItem();
+                JToken responseDoc = null;
+                if (string.IsNullOrEmpty(responseContent) == false)
+                {
+                    responseDoc = JToken.Parse(responseContent);
+                }
+                if (responseDoc != null)
+                {
+                    resultModel.DeserializeJson(responseDoc);
+                }
+                result.Body = resultModel;
+            }
+            
+            if (shouldTrace)
+            {
+                ServiceClientTracing.Exit(invocationId, result);
+            }
+            return result;
+        }
     }
 }

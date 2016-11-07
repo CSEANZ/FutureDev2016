@@ -33,5 +33,10 @@ namespace DXNewsApp
         /// Cancellation token.
         /// </param>
         Task<HttpOperationResponse<IList<NewsItem>>> GetNewsWithOperationResponseAsync(CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        
+        /// <param name='cancellationToken'>
+        /// Cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<NewsItem>> LatestNewsItemWithOperationResponseAsync(CancellationToken cancellationToken = default(System.Threading.CancellationToken));
     }
 }

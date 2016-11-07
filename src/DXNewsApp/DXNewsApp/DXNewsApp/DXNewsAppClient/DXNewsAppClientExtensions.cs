@@ -37,5 +37,29 @@ namespace DXNewsApp
             Microsoft.Rest.HttpOperationResponse<System.Collections.Generic.IList<DXNewsApp.Models.NewsItem>> result = await operations.GetNewsWithOperationResponseAsync(cancellationToken).ConfigureAwait(false);
             return result.Body;
         }
+        
+        /// <param name='operations'>
+        /// Reference to the DXNewsApp.IDXNewsAppClient.
+        /// </param>
+        public static NewsItem LatestNewsItem(this IDXNewsAppClient operations)
+        {
+            return Task.Factory.StartNew((object s) => 
+            {
+                return ((IDXNewsAppClient)s).LatestNewsItemAsync();
+            }
+            , operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+        }
+        
+        /// <param name='operations'>
+        /// Reference to the DXNewsApp.IDXNewsAppClient.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// Cancellation token.
+        /// </param>
+        public static async Task<NewsItem> LatestNewsItemAsync(this IDXNewsAppClient operations, CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Microsoft.Rest.HttpOperationResponse<DXNewsApp.Models.NewsItem> result = await operations.LatestNewsItemWithOperationResponseAsync(cancellationToken).ConfigureAwait(false);
+            return result.Body;
+        }
     }
 }

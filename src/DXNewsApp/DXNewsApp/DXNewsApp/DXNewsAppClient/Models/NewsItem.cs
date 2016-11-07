@@ -12,7 +12,7 @@ namespace DXNewsApp.Models
         private string _abstractVariable;
         
         /// <summary>
-        /// Optional.
+        /// Required.
         /// </summary>
         public string Abstract
         {
@@ -23,7 +23,7 @@ namespace DXNewsApp.Models
         private string _body;
         
         /// <summary>
-        /// Optional.
+        /// Required.
         /// </summary>
         public string Body
         {
@@ -31,10 +31,21 @@ namespace DXNewsApp.Models
             set { this._body = value; }
         }
         
-        private string _imageUrl;
+        private string _id;
         
         /// <summary>
         /// Optional.
+        /// </summary>
+        public string ID
+        {
+            get { return this._id; }
+            set { this._id = value; }
+        }
+        
+        private string _imageUrl;
+        
+        /// <summary>
+        /// Required.
         /// </summary>
         public string ImageUrl
         {
@@ -45,7 +56,7 @@ namespace DXNewsApp.Models
         private string _title;
         
         /// <summary>
-        /// Optional.
+        /// Required.
         /// </summary>
         public string Title
         {
@@ -76,6 +87,11 @@ namespace DXNewsApp.Models
                 if (bodyValue != null && bodyValue.Type != JTokenType.Null)
                 {
                     this.Body = ((string)bodyValue);
+                }
+                JToken idValue = inputObject["id"];
+                if (idValue != null && idValue.Type != JTokenType.Null)
+                {
+                    this.ID = ((string)idValue);
                 }
                 JToken imageUrlValue = inputObject["imageUrl"];
                 if (imageUrlValue != null && imageUrlValue.Type != JTokenType.Null)

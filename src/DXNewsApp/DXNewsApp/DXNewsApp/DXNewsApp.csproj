@@ -38,15 +38,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DXNewsAppClient.cs" />
-    <Compile Include="Views\DetailPage.xaml.cs">
-      <DependentUpon>DetailPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="DXNewsAppClient\DXNewsAppClient.cs" />
     <Compile Include="DXNewsAppClient\DXNewsAppClientExtensions.cs" />
-    <Compile Include="DXNewsDesignData.cs" />
     <Compile Include="DXNewsAppClient\IDXNewsAppClient.cs" />
     <Compile Include="DXNewsAppClient\Models\NewsItem.cs" />
     <Compile Include="DXNewsAppClient\Models\NewsItemCollection.cs" />
+    <Compile Include="Views\DetailPage.xaml.cs">
+      <DependentUpon>DetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DXNewsDesignData.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

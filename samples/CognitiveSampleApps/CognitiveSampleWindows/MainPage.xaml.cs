@@ -18,6 +18,7 @@ using Windows.Media.SpeechSynthesis;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
+using Windows.System;
 using Windows.System.Display;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -57,20 +58,55 @@ namespace CognitiveSampleWindows
 
         private StorageFolder _captureFolder = null;
 
+        private string _keySet;
+
         SpeechService _speechService = new SpeechService();
 
         public MainPage()
         {
             this.InitializeComponent();
 
-            txtKey.Text = _settings.GetKey();
+            this.KeyDown += MainPage_KeyDown;
+        }
 
-            
+        public string KeySet
+        {
+            get { return _keySet; }
+            set
+            {
+                _keySet = value;
+                _settings.SetKey(_keySet);
+            }
+        }
+
+        private void MainPage_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Space)
+            {
+                _doCap();
+            }
+
+            if (e.Key == VirtualKey.K)
+            {
+                _showDialog();
+            }
+        }
+
+        async void _showDialog()
+        {
+            await EnterKeyDialog.ShowAsync();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            SetupCamera();
+            _keySet = _settings.GetKey();
+
+            if (_keySet == null)
+            {
+                _showDialog();
+            }
+
+            await SetupCamera();
             await SetupUiAsync();
         }
 
@@ -88,11 +124,6 @@ namespace CognitiveSampleWindows
             var picturesLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Pictures);
             // Fall back to the local app storage if the Pictures Library is not available
             _captureFolder = picturesLibrary.SaveFolder ?? ApplicationData.Current.LocalFolder;
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            _settings.SetKey(txtKey.Text);
         }
 
         async Task SetupCamera()
@@ -333,7 +364,12 @@ namespace CognitiveSampleWindows
             }
         }
 
-        private async void Capture_OnClick(object sender, RoutedEventArgs e)
+        private void Capture_OnClick(object sender, RoutedEventArgs e)
+        {
+            _doCap();
+        }
+
+        async void _doCap()
         {
             ProgressRing.IsActive = true;
             ResultText.Text = "";

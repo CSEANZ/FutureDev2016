@@ -1,0 +1,1264 @@
+{
+  "luis_schema_version": "1.0.0",
+  "name": "_Build_News",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "Name": "GetHelp",
+      "Children": []
+    },
+    {
+      "Name": "GetLatestNews",
+      "Children": []
+    },
+    {
+      "Name": "None",
+      "Children": []
+    }
+  ],
+  "entities": [
+    {
+      "Name": "Topic",
+      "Children": []
+    }
+  ],
+  "bing_entities": [],
+  "actions": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "any new stuff about bill clinton",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what are the news about microsoft",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what are jim carrey related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "can you give me the news about games",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "can you give me the news about earth",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "please show me the jim carrey related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what are dna related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "please show me the news about barak obama",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "new things about toys",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "give me some of the news about munich",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "new things about general",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "can you please give me the news avout games",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "what do they say about sports",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "give me some of the news about barak obama",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "please show me the us politics related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what do they say about san francisco",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "Topic",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "any new stuff about us politics",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what do they say about earth",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "anything in the news about top",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "give me some of the news about general",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "any new stuff about earth",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "what are the news about jim carrey",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "Topic",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "what is there in the news about sports",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "please show me the economy related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "any news about games",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "can you please give me the news avout munich",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "new things about economy",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "what are the jim carrey news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "any general related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "any news about sports",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "is the anything jim carrey related in the news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "any news about economy",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "give me the earth related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "please show me the news about bill clinton",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "what are the news about sports",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what are the barak obama news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "new things about us politics",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "any new stuff about dna",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "any new stuff about toys",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "can you please give me the news avout top",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "can you please give me the news avout general",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "is the anything bill clinton related in the news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "what are the apple news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "what is there in the news about dna",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "what are the news about politics",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "can you give me some news about bill clinton",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "any earth related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "can you give me some news about toys",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "give me some of the news about earth",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "give me some of the news about sports",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "what are the news about top",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "is the anything earth related in the news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "what are economy related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "any san francisco related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "Topic",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "any new stuff about economy",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "can you please give me the news avout politics",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "is the anything apple related in the news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "anything in the news about bill clinton",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "Topic",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "what is there in the news about san francisco",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "what are us politics related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "any us politics related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "Topic",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "can you give me the news about bill clinton",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "what are the news about general",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "please show me the toys related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "anything in the news about politics",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "give me some of the news",
+      "intent": "GetLatestNews",
+      "entities": []
+    },
+    {
+      "text": "can you please give me the news",
+      "intent": "GetLatestNews",
+      "entities": []
+    },
+    {
+      "text": "what are microsoft related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "give me the general related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "give me some of the news about toys",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "can you give me some news about us politics",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "can you give me some news about jim carrey",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "is the anything games related in the news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "what is there in the news about economy",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "what are general related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "any microsoft related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "any news about toys",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "can you give me the news about san francisco",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "Topic",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "what is there in the news about microsoft",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "please show me the news about politics",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "any news about earth",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "give me the top related news",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "give me some of the news about politics",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "tell me",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "turn on my wifi",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "stop watering the plants",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "wash the shirt",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "book me a flight",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "for the next two weeks",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "ring the alarm clock",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "send an email",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "play some music",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "feed me",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "you silly app",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "buy me donuts",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "wake me up",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "it's snowy clean my car",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "feed the fishes",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "close the windows",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "please order some new tea",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "shutdown my system",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "check the traffic conditions",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "twelve hours",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "can you give me some news about bucharest",
+      "intent": "GetLatestNews",
+      "entities": [
+        {
+          "entity": "Topic",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "if it rains",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "get me breakfast",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what can i say",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "what do you understand?",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "what can you do",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "what phrases do you understand?",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "what can i use you for?",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "i need help",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "give me sample phrases",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "how can you help me",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "tell me what can i say please",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "tell me what can i say",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "what phrases can i say",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "tell me what can you do",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "i need assistance",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "give me instructions",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "please help me",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "please help",
+      "intent": "GetHelp",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "GetHelp",
+      "entities": []
+    }
+  ]
+}

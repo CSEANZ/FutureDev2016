@@ -1,2 +1,2 @@
 # SydneyDeveloperEvent
-Code bits for the Sydney Developer Event. 
+Code bits for the Sydney Developer Event.

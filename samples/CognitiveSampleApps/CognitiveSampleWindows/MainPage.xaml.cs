@@ -20,7 +20,9 @@ using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 using Windows.System;
 using Windows.System.Display;
+using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -133,6 +135,38 @@ namespace CognitiveSampleWindows
             var picturesLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Pictures);
             // Fall back to the local app storage if the Pictures Library is not available
             _captureFolder = picturesLibrary.SaveFolder ?? ApplicationData.Current.LocalFolder;
+
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
+            {
+                var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+                if (titleBar != null)
+                {
+                    titleBar.ButtonBackgroundColor = Colors.DodgerBlue;
+                    titleBar.ButtonForegroundColor = Colors.White;
+                    titleBar.BackgroundColor = Colors.DodgerBlue;
+                    titleBar.ForegroundColor = Colors.White;
+                }
+            }
+        }
+
+        private async void _setResolution()
+        {
+
+            var res = _mediaCapture.VideoDeviceController.GetAvailableMediaStreamProperties(MediaStreamType.VideoPreview);
+
+            uint maxResolution = 0;
+            int indexMaxResolution = 0;
+
+
+            if (res.Count >= 1)
+            {
+                var orderedRes = res.OfType<VideoEncodingProperties>().OrderBy(_ => _.Width);
+
+                var selectedRes = orderedRes.FirstOrDefault();
+
+
+                await _mediaCapture.VideoDeviceController.SetMediaStreamPropertiesAsync(MediaStreamType.VideoPreview, selectedRes);
+            }
         }
 
         async Task SetupCamera()
@@ -160,6 +194,7 @@ namespace CognitiveSampleWindows
             try
             {
                 await _mediaCapture.InitializeAsync(settings);
+                //_setResolution();
                 _isInitialized = true;
             }
             catch (UnauthorizedAccessException)
@@ -290,7 +325,7 @@ namespace CognitiveSampleWindows
 
                 _isPreviewing = true;
 
-               
+
                 DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
             }
             catch (UnauthorizedAccessException)
@@ -364,6 +399,13 @@ namespace CognitiveSampleWindows
                         {"System.Photo.Orientation", new BitmapTypedValue(photoOrientation, PropertyType.UInt16)}
                     };
 
+                    var f = await decoder.GetFrameAsync(0);
+
+                    encoder.BitmapTransform.ScaledHeight = f.PixelHeight / 2;
+                    encoder.BitmapTransform.ScaledWidth = f.PixelWidth / 2;
+
+
+
                     await encoder.BitmapProperties.SetPropertiesAsync(properties);
                     await encoder.FlushAsync();
 
@@ -392,27 +434,37 @@ namespace CognitiveSampleWindows
             ResultText.Text = "";
 
             _speechService.DoSpeech("okay let me see...", this.SpeechElement);
-
-            var bytes = await Capture();
-
-            if (bytes == null)
+            try
             {
-                return;
+
+
+                var bytes = await Capture();
+
+                if (bytes == null)
+                {
+                    return;
+                }
+
+                var service = new VisionService(_settings);
+
+                var result = await service.DetectImage(bytes);
+
+                ProgressRing.IsActive = false;
+
+                var description = result?.description?.captions?.FirstOrDefault()?.text;
+
+                if (description != null)
+                {
+                    description = "it's " + description;
+                    _speechService.DoSpeech(description, this.SpeechElement);
+                    ResultText.Text = description;
+                }
+
+
             }
-
-            var service = new VisionService(_settings);
-
-            var result = await service.DetectImage(bytes);
-
-            ProgressRing.IsActive = false;
-
-            var description = result?.description?.captions?.FirstOrDefault()?.text;
-
-            if (description != null)
+            catch (Exception ex)
             {
-                description = "it's " + description;
-                _speechService.DoSpeech(description, this.SpeechElement);
-                ResultText.Text = description;
+                Debug.WriteLine(ex.Message);
             }
         }
     }

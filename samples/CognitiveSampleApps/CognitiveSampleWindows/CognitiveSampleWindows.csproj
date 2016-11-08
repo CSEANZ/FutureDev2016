@@ -113,9 +113,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\dxbg.jpg" />
+    <Content Include="Assets\dx_150.png" />
+    <Content Include="Assets\dx_300.png" />
+    <Content Include="Assets\dx_600.png" />
+    <Content Include="Assets\dx_71.png" />
+    <Content Include="Assets\dx_71.scale-100.png" />
     <Content Include="Assets\dx_logo_2.png" />
     <Content Include="Assets\Square150x150Logo.scale-100.png" />
     <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

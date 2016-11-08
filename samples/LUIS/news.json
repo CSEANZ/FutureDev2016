@@ -1,6 +1,6 @@
 {
-  "luis_schema_version": "1.0.0",
-  "name": "_Build_News",
+  "luis_schema_version": "1.3.0",
+  "name": "Build News",
   "desc": "",
   "culture": "en-us",
   "intents": [
@@ -23,10 +23,15 @@
       "Children": []
     }
   ],
-  "bing_entities": [],
+  "composites": [],
+  "bing_entities": [
+    "datetime"
+  ],
   "actions": [],
-  "model_features": [],
   "regex_features": [],
+  "model_features": [
+    
+  ],
   "utterances": [
     {
       "text": "any new stuff about bill clinton",

@@ -336,6 +336,8 @@ namespace CognitiveSampleWindows
         private async void Capture_OnClick(object sender, RoutedEventArgs e)
         {
             ProgressRing.IsActive = true;
+            ResultText.Text = "";
+
             _speechService.DoSpeech("okay let me see...", this.SpeechElement);
 
             var bytes = await Capture();
@@ -351,9 +353,13 @@ namespace CognitiveSampleWindows
 
             ProgressRing.IsActive = false;
 
-            if (result?.description?.captions?.Count > 0)
+            var description = result?.description?.captions?.FirstOrDefault()?.text;
+
+            if (description != null)
             {
-                _speechService.DoSpeech(result?.description?.captions.FirstOrDefault().text, this.SpeechElement);
+                description = "it's " + description;
+                _speechService.DoSpeech(description, this.SpeechElement);
+                ResultText.Text = description;
             }
         }
     }

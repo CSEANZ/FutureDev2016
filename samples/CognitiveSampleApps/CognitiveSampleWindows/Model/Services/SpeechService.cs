@@ -13,7 +13,7 @@ namespace CognitiveSampleWindows.Model.Services
     {
         public async void DoSpeech(string text, MediaElement speechElement)
         {
-            await _speakTextAsync("it's " + text, speechElement);
+            await _speakTextAsync(text, speechElement);
         }
 
         async Task _speakTextAsync(string text, MediaElement mediaElement)

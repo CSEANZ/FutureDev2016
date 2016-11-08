@@ -21,11 +21,27 @@
             
         </StackPanel>
         
-        <Grid Grid.Row="1" Background="Red">
+        <Grid Grid.Row="1" Background="DodgerBlue">
             
             <CaptureElement Name="PreviewControl" Stretch="Uniform"/>
-            <Button Content="Capure" Click="Capture_OnClick" VerticalAlignment="Top" HorizontalAlignment="Left" Width="50" Height="50" Margin="30"></Button>
+
+
+            <Rectangle VerticalAlignment="Bottom" Height="200">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Offset="0"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock x:Name="ResultText" VerticalAlignment="Bottom" Margin="20, 0, 20, 30" 
+                       HorizontalAlignment="Center" Foreground="#FFFFE200" FontSize="30"/>
+
+            <Button Content="Capture" Click="Capture_OnClick" VerticalAlignment="Top" 
+                    HorizontalAlignment="Center" Width="100" Height="50" Margin="30"></Button>
         </Grid>
+        
+        
         
         <ProgressRing IsActive="False" Width="50" Height="50" x:Name="ProgressRing" VerticalAlignment="Center" HorizontalAlignment="Center"></ProgressRing>
         

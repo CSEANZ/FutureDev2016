@@ -29,6 +29,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using CognitiveSampleWindows.Model.Services;
+using Panel = Windows.Devices.Enumeration.Panel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -62,6 +63,8 @@ namespace CognitiveSampleWindows
 
         SpeechService _speechService = new SpeechService();
 
+        Windows.Devices.Enumeration.Panel _currentPanel = Panel.Back;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -79,7 +82,7 @@ namespace CognitiveSampleWindows
             }
         }
 
-        private void MainPage_KeyDown(object sender, KeyRoutedEventArgs e)
+        private async void MainPage_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Space)
             {
@@ -89,6 +92,12 @@ namespace CognitiveSampleWindows
             if (e.Key == VirtualKey.K)
             {
                 _showDialog();
+            }
+
+            if (e.Key == VirtualKey.X)
+            {
+                await CleanupCameraAsync();
+                await SetupCamera();
             }
         }
 
@@ -128,8 +137,16 @@ namespace CognitiveSampleWindows
 
         async Task SetupCamera()
         {
-            var cameraDevice = await FindCameraDeviceByPanelAsync(Windows.Devices.Enumeration.Panel.Back);
+            var cameraDevice = await FindCameraDeviceByPanelAsync(_currentPanel);
 
+            if (_currentPanel == Panel.Back)
+            {
+                _currentPanel = Panel.Front;
+            }
+            else
+            {
+                _currentPanel = Panel.Back;
+            }
             if (cameraDevice == null)
             {
                 Debug.WriteLine("No camera device found!");

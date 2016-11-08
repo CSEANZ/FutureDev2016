@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CognitiveSampleApps": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Temp\\Aussie-Meat-Pie.jpg BASIC"
+    }
+  }
+}

@@ -58,7 +58,7 @@ namespace SpeechExample
 
             _micClient.OnPartialResponseReceived += _micClient_OnPartialResponseReceived;
 
-            _testSystem();
+            //_testSystem();
         }
 
         void _testSystem()
@@ -111,7 +111,13 @@ namespace SpeechExample
 
         private void _micClient_OnPartialResponseReceived(object sender, Microsoft.CognitiveServices.SpeechRecognition.PartialSpeechResponseEventArgs e)
         {
-            _realText += e.PartialResult;
+            _realText = e.PartialResult;
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(_setText));
+        }
+
+        void _setText()
+        {
+            SWText.Text = _realText;
         }
     }
 }

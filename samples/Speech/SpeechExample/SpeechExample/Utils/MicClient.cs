@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,21 +36,29 @@ namespace SpeechExample.Utils
             _micClient.OnMicrophoneStatus += _micClient_OnMicrophoneStatus;
             _micClient.OnPartialResponseReceived += _micClient_OnPartialResponseReceived;
             _micClient.OnResponseReceived += _micClient_OnResponseReceived;
+            _micClient.OnConversationError += _micClient_OnConversationError;
+            _micClient.StartMicAndRecognition();
+        }
+
+        private void _micClient_OnConversationError(object sender, SpeechErrorEventArgs e)
+        {
+            Debug.WriteLine(e.SpeechErrorText);
         }
 
         private void _micClient_OnResponseReceived(object sender, SpeechResponseEventArgs e)
         {
-            
+            Debug.WriteLine(e.PhraseResponse);
         }
 
         private void _micClient_OnPartialResponseReceived(object sender, PartialSpeechResponseEventArgs e)
         {
+            Debug.WriteLine(e.PartialResult);
             OnPartialResponseReceived?.Invoke(this, e);
         }
 
         private void _micClient_OnMicrophoneStatus(object sender, MicrophoneEventArgs e)
         {
-            
+            Debug.WriteLine(e.Recording);
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -37,9 +38,13 @@ namespace SpeechExample
         private string _realText = "";
         private List<string> _previousLines = new List<string>();
 
+        private Storyboard _scrollerStoryboard;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            _scrollerStoryboard = Resources["ScrollerStory"] as Storyboard;
 
             this.KeyDown += MainWindow_KeyDown;
 
@@ -57,11 +62,10 @@ namespace SpeechExample
 
             _micClient.OnPartialResponseReceived += _micClient_OnPartialResponseReceived;
             _micClient.OnResponseReceived += _micClient_OnResponseReceived;
+            _micClient.OnMicrophoneStatus += _micClient_OnMicrophoneStatus;
 
             //_testSystem();
         }
-
-       
 
         void _testSystem()
         {
@@ -94,6 +98,9 @@ namespace SpeechExample
 
         void _start()
         {
+            Title = "Starting";
+
+            
             _micClient.Start();
         }
 
@@ -108,6 +115,18 @@ namespace SpeechExample
             {
                 _start();
             }
+        }
+
+        void _setText()
+        {
+            SWText.Text = "";
+
+            foreach (var l in _previousLines)
+            {
+                SWText.Text += l + "\r\n\r\n";
+            }
+
+            SWText.Text += _realText;
         }
 
 
@@ -127,17 +146,12 @@ namespace SpeechExample
 
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(_setText));
         }
-
-        void _setText()
+        private void _micClient_OnMicrophoneStatus(object sender, Microsoft.CognitiveServices.SpeechRecognition.MicrophoneEventArgs e)
         {
-            SWText.Text = "";
-
-            foreach (var l in _previousLines)
-            {
-                SWText.Text += l + "\r\n\r\n";
-            }
-
-            SWText.Text += _realText;
+            _scrollerStoryboard.Begin();
+            Title = e.Recording ? "Go" : "No go!";
         }
+
+        
     }
 }

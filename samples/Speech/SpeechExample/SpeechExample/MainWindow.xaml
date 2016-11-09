@@ -6,16 +6,17 @@
         xmlns:local="clr-namespace:SpeechExample"
         mc:Ignorable="d"
         Title="MainWindow" Background="Black">
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="Window.Loaded" >
-            <BeginStoryboard>
-                <Storyboard Name="story">
-                    <DoubleAnimation
+    <Window.Resources>
+        <Storyboard x:Key="ScrollerStory">
+            <DoubleAnimation
                         Storyboard.TargetName="TextPos" 
                         Storyboard.TargetProperty="OffsetY" 
                         From="-1.5" To="5" Duration="0:1:30" RepeatBehavior="Forever"/>
-                </Storyboard>
-            </BeginStoryboard>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded" >
+           
         </EventTrigger>
     </Window.Triggers>
 
@@ -59,7 +60,7 @@
                                                              LineStackingStrategy="BlockLineHeight"
                                                                 x:Name="SWText"
                                                              >
-                                                        
+
                                                     </TextBlock>
                                                 </Border>
                                             </Grid>

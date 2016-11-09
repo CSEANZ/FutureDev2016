@@ -11,7 +11,7 @@ namespace SpeechExample.Utils
     public class MicClient
     {
         private MicrophoneRecognitionClient _micClient;
-        private string _defaultLocale => "en-US";
+        private string _defaultLocale => "en-AU";
 
         SpeechRecognitionMode _mode = SpeechRecognitionMode.LongDictation;
 
@@ -19,6 +19,7 @@ namespace SpeechExample.Utils
 
         public event EventHandler<PartialSpeechResponseEventArgs> OnPartialResponseReceived;
         public event EventHandler<SpeechResponseEventArgs> OnResponseReceived;
+        public event EventHandler<MicrophoneEventArgs> OnMicrophoneStatus;
 
         public MicClient()
         {
@@ -61,6 +62,7 @@ namespace SpeechExample.Utils
         private void _micClient_OnMicrophoneStatus(object sender, MicrophoneEventArgs e)
         {
             Debug.WriteLine(e.Recording);
+            OnMicrophoneStatus?.Invoke(this, e);
         }
     }
 }

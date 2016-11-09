@@ -1,0 +1,15 @@
+﻿<Window x:Class="SpeechExample.KeyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpeechExample"
+        mc:Ignorable="d"
+        Title="Enter subscription key" Height="135.402" Width="300">
+    <Grid>
+        <StackPanel Margin="15">
+            <TextBox x:Name="KeyText"></TextBox>
+            <Button Content="Save key" Click="ButtonBase_OnClick" Margin="15" Width="100"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

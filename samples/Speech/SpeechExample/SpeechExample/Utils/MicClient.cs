@@ -18,6 +18,7 @@ namespace SpeechExample.Utils
         private KeyManagement _keyManagement;
 
         public event EventHandler<PartialSpeechResponseEventArgs> OnPartialResponseReceived;
+        public event EventHandler<SpeechResponseEventArgs> OnResponseReceived;
 
         public MicClient()
         {
@@ -48,6 +49,7 @@ namespace SpeechExample.Utils
         private void _micClient_OnResponseReceived(object sender, SpeechResponseEventArgs e)
         {
             Debug.WriteLine(e.PhraseResponse);
+            OnResponseReceived?.Invoke(this, e);
         }
 
         private void _micClient_OnPartialResponseReceived(object sender, PartialSpeechResponseEventArgs e)

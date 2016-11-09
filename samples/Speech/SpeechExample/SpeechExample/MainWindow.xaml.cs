@@ -35,14 +35,13 @@ namespace SpeechExample
         private int _count = 0;
 
         private string _realText = "";
+        private List<string> _previousLines = new List<string>();
 
         public MainWindow()
         {
             InitializeComponent();
 
             this.KeyDown += MainWindow_KeyDown;
-
-
 
             this.Loaded += MainWindow_Loaded;
         }
@@ -57,9 +56,12 @@ namespace SpeechExample
             }
 
             _micClient.OnPartialResponseReceived += _micClient_OnPartialResponseReceived;
+            _micClient.OnResponseReceived += _micClient_OnResponseReceived;
 
             //_testSystem();
         }
+
+       
 
         void _testSystem()
         {
@@ -115,9 +117,27 @@ namespace SpeechExample
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(_setText));
         }
 
+        private void _micClient_OnResponseReceived(object sender, Microsoft.CognitiveServices.SpeechRecognition.SpeechResponseEventArgs e)
+        {
+            var firstOrDefault = e.PhraseResponse.Results.FirstOrDefault();
+            if (firstOrDefault != null)
+                _previousLines.Add(firstOrDefault.DisplayText);
+
+            _realText = null;
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(_setText));
+        }
+
         void _setText()
         {
-            SWText.Text = _realText;
+            SWText.Text = "";
+
+            foreach (var l in _previousLines)
+            {
+                SWText.Text += l + "\r\n\r\n";
+            }
+
+            SWText.Text += _realText;
         }
     }
 }

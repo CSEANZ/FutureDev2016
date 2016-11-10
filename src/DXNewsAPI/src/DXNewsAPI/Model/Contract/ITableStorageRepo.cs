@@ -9,7 +9,7 @@ namespace DXNewsAPI.Model.Contract
     {
         Task Init();
         Task<bool> InsertNewsItem(NewsItem item);
-        Task<IList<NewsItem>> GetNewsItems(int take = 100);
+        Task<IList<NewsItem>> GetNewsItems(string search = null, int take = 100);
         Task<NewsItem> GetNewsItemById(string id);
         Task<bool> UpdateNewsItem(NewsItem item);
         Task<bool> DeleteNewsItem(string id);

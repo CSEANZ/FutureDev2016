@@ -33,7 +33,7 @@ namespace DXNewsAPI.Model.Repo
 
             _account = CloudStorageAccount.Parse(dbOptions.Value.ConnectionString);
             var tableClient = _account.CreateCloudTableClient();
-            
+
             _table = tableClient.GetTableReference(dbOptions.Value.NewsTableId);
         }
 
@@ -55,7 +55,7 @@ namespace DXNewsAPI.Model.Repo
 
             await _notificationService.NotifySubscribers(new NotifyItem
             {
-                Id = te.RowKey, 
+                Id = te.RowKey,
                 Title = item.Title
             }.ToJson());
 
@@ -96,7 +96,7 @@ namespace DXNewsAPI.Model.Repo
             return newsTableItem;
         }
 
-        public async Task<IList<NewsItem>> GetNewsItems(int take = 100)
+        public async Task<IList<NewsItem>> GetNewsItems(string search = null, int take = 100)
         {
             string rowKeyToUse = string.Format("{0:D19}", DateTime.MaxValue.Ticks - DateTime.UtcNow.Ticks);
 
@@ -111,6 +111,8 @@ namespace DXNewsAPI.Model.Repo
 
             TableContinuationToken token = null;
 
+            var searchLower = search?.ToLower();
+
             var newsList = new List<NewsItemTableEntity>();
             do
             {
@@ -118,6 +120,15 @@ namespace DXNewsAPI.Model.Repo
 
                 token = resultSegment.ContinuationToken;
 
+                if (!string.IsNullOrWhiteSpace(searchLower))
+                {
+                    resultSegment.Results.RemoveAll(_ =>
+                      !_.Abstract.ToLower().Contains(searchLower) &&
+                      !_.Body.ToLower().Contains(searchLower) &&
+                      !_.Title.ToLower().Contains(searchLower)
+                    );
+                }
+                
                 newsList.AddRange(resultSegment.Results);
 
             } while (token != null);

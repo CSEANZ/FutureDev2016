@@ -18,7 +18,7 @@ namespace DXNewsAPI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _tableStorageRepo.GetNewsItems(20));
+            return View(await _tableStorageRepo.GetNewsItems(null, 20));
         }
 
         public async Task<IActionResult> Detail(string id)

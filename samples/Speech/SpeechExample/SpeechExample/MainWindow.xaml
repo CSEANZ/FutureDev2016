@@ -11,7 +11,7 @@
             <DoubleAnimation
                         Storyboard.TargetName="TextPos" 
                         Storyboard.TargetProperty="OffsetY" 
-                        From="-1.5" To="5" Duration="0:1:30" RepeatBehavior="Forever"/>
+                        From="-1.5" To="5" Duration="0:1:45" RepeatBehavior="Forever"/>
         </Storyboard>
     </Window.Resources>
     <Window.Triggers>

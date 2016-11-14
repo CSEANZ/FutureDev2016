@@ -4,9 +4,9 @@ This example demonstrates how to send images in to the Cognitive Services system
 
 ## Get a Key
 
-You will need to sign up for a Cognitive Services key using the instructions [here](https://github.com/MSFTAuDX/FutureDev2016/docs/signup.md). 
+You will need to sign up for a Cognitive Services key using the instructions [here](https://github.com/MSFTAuDX/FutureDev2016/blob/master/docs/signup.md). 
 
-You will need to set up your app secrets using the instructions [here](https://github.com/MSFTAuDX/FutureDev2016/docs/appsecrets.md).
+You will need to set up your app secrets using the instructions [here](https://github.com/MSFTAuDX/FutureDev2016/blob/master/docs/appsecrets.md).
 
 ## .NET Core Console App
 

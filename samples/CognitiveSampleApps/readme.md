@@ -8,6 +8,10 @@ You will need to sign up for a Cognitive Services key using the instructions [he
 
 You will need to set up your app secrets using the instructions [here](https://github.com/MSFTAuDX/FutureDev2016/blob/master/docs/appsecrets.md).
 
+Once you have the key you will need to set the secret value "CognitiveServicesKey" for the console app. 
+
+In the UWP, press "K" when the app boots and enter the key. 
+
 ## .NET Core Console App
 
 The console app takes an image file as an argument and passes back the identified result. 

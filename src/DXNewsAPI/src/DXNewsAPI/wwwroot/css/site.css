@@ -21,3 +21,63 @@ textarea {
     width: 200px;
     height: 200px;
 }
+
+
+
+/* TK */
+.clearfix:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+
+
+.nb {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.nb_imageArea {
+    float: right;
+    width: 150px;
+    text-align: center;
+    margin: 0 0 30px 30px;
+}
+
+
+
+.nb_title {
+    font-size: 1.5em;
+    color: #696;
+}
+.nb_body{
+    margin-top: 4px;
+}
+.nb_abstract {
+    font-style: italic;
+    color: #999;
+}
+.nb_content {
+    margin-right: 180px;
+}
+.nb_link {
+    float: left;;
+    font-size: 2em;
+}
+.nb_image{
+    float: right;
+    margin-bottom: 8px;
+    border: 1px solid #eee;
+}
+.nb_image img {
+    width: 150px;
+    height: 150px;
+}
+
+

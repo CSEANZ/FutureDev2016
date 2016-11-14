@@ -10,4 +10,13 @@ It uses Nuget pacakges to bring in the Speak Recognition functionality Microsoft
 
 Special thanks to thanks to @Andrey [http://stackoverflow.com/questions/3157341/starwars-text-effect-in-wpf]() for the Star Wars effect XAML!
 
+The following code from MicClient.cs is what starts the process, follow along from there!
 
+```C#
+_micClient = SpeechRecognitionServiceFactory.CreateMicrophoneClient(
+_mode,
+_defaultLocale,
+_keyManagement.SubscriptionKey,
+_keyManagement.SubscriptionKey);
+
+```

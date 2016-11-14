@@ -21,7 +21,7 @@ var result = url.PostAndParse<VisionResponse>(image).GetAwaiter().GetResult();
 
 ```
 
-"PostAndParse" is an extension method provided by [ExtensionGoo](https://github.com/jakkaj/ExtensionGoo) - which mackes it super easy to do posts and things using string extensions. 
+"PostAndParse" is an extension method provided by [ExtensionGoo](https://github.com/jakkaj/ExtensionGoo) - which makes it super easy to do posts and things using string extensions. 
 
 ## Windows UWP App
 This version of the demo uses the same simple method to send a byte[] image to the server. 

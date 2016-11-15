@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DXNewsAPI.Model.Contract;
 using DXNewsAPI.Model.Entity;
 using DXNewsAPI.Model.Entity.News;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 namespace DXNewsAPI.Controllers.Editing
@@ -28,13 +29,14 @@ namespace DXNewsAPI.Controllers.Editing
         {
             return View();
         }
-
+        [Authorize]
         public async Task<ActionResult> Edit(string id)
         {
             return View(await _tableStorageRepo.GetNewsItemById(id));
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(NewsItem item)
         {
@@ -56,6 +58,7 @@ namespace DXNewsAPI.Controllers.Editing
         }
 
         // GET: NewsEditor/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -64,6 +67,7 @@ namespace DXNewsAPI.Controllers.Editing
         // POST: NewsEditor/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task <ActionResult> Create(NewsItem item)
         {
             try
@@ -83,9 +87,10 @@ namespace DXNewsAPI.Controllers.Editing
             }
         }
 
-      
+
 
         // GET: NewsEditor/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(string id)
         {
             return View(await _tableStorageRepo.GetNewsItemById(id));
@@ -94,6 +99,7 @@ namespace DXNewsAPI.Controllers.Editing
         // POST: NewsEditor/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Delete(NewsItem newsItem)
         {
             try

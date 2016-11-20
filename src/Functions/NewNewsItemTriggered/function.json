@@ -1,0 +1,24 @@
+{
+  "bindings": [
+    {
+      "name": "mySbMsg",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "topicName": "newsevent",
+      "subscriptionName": "mysubscription",
+      "connection": "NewsServiceBus",
+      "accessRights": "Manage"
+    },
+    {
+      "type": "notificationHub",
+      "name": "notification",
+      "hubName": "newsevent",
+      "connection": "dxnews_NOTIFICATIONHUB",
+      "tagExpression": "general",
+      "enableTestSend": false,
+      "direction": "out",
+      "platform": "wns"
+    }
+  ],
+  "disabled": false
+}

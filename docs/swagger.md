@@ -1,2 +1,0 @@
-### Swagger and AutoRest
-

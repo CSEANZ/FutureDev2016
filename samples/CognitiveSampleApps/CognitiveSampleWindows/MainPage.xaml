@@ -26,11 +26,16 @@
             <TextBlock x:Name="ResultText" VerticalAlignment="Bottom" Margin="20, 0, 20, 30" 
                        HorizontalAlignment="Center" Foreground="#FFFFE200" FontSize="30"/>
 
-            <Button Content="Capture" Click="Capture_OnClick" VerticalAlignment="Top" 
-                    HorizontalAlignment="Center" Width="100" Height="50" Margin="30"></Button>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" 
+                    HorizontalAlignment="Center" Height="50" Margin="30">
+                <Button Content="Regognise" Click="Capture_OnClick" Width="100"  ></Button>
 
+                <Button Content="OCR" Click="Ocr_OnClick"  Width="100" ></Button>
+            </StackPanel>
+            
+            
             <ProgressRing Foreground="#FFFFE200" IsActive="False" Width="50" Height="50" x:Name="ProgressRing" VerticalAlignment="Center" HorizontalAlignment="Center"></ProgressRing>
-
+            <TextBox TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="OcrResultOutput" Margin="60" Visibility="Collapsed"></TextBox>
         </Grid>
 
 
@@ -40,7 +45,11 @@
 
         <ContentDialog Title="Enter Key" x:Name="EnterKeyDialog" PrimaryButtonText="OK">
             <Grid>
-                <TextBox  Text="{x:Bind KeySet, Mode=TwoWay }"></TextBox>
+                <StackPanel>
+                    <TextBlock Text="Vision Key"></TextBlock>
+                    <TextBox  Text="{x:Bind KeySet, Mode=TwoWay }"></TextBox>
+                </StackPanel>
+                
             </Grid>
         </ContentDialog>
 

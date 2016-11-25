@@ -99,7 +99,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MediaElementExtensions.cs" />
+    <Compile Include="Model\Entity\Line.cs" />
+    <Compile Include="Model\Entity\OcrResults.cs" />
+    <Compile Include="Model\Entity\Rectangle.cs" />
+    <Compile Include="Model\Entity\Region.cs" />
     <Compile Include="Model\Entity\VisionResponse.cs" />
+    <Compile Include="Model\Entity\Word.cs" />
     <Compile Include="Model\Services\SettingsService.cs" />
     <Compile Include="Model\Services\SpeechService.cs" />
     <Compile Include="Model\Services\VisionService.cs" />

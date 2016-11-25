@@ -23,6 +23,19 @@ namespace CognitiveSampleWindows.Model.Services
             return url;
         }
 
+
+        public string GetOcrUrl()
+        {
+            var key = GetKey();
+
+            var url =
+                string.Format(
+                    "https://api.projectoxford.ai/vision/v1.0/ocr?language=en&detectOrientation=true&subscription-key={0}",
+                    key);
+
+            return url;
+        }
+
         public void SetKey(string key)
         {
             _localSettings.Values["VisionKey"] = key;

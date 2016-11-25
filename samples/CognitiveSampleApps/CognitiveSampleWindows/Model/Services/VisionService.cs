@@ -14,6 +14,21 @@ namespace CognitiveSampleWindows.Model.Services
             _settings = settings;
         }
 
+        public async Task<OcrResults> OcrImage(byte[] image)
+        {
+            var dtStart = DateTime.Now;
+
+            var url = _settings.GetOcrUrl();
+
+            var result = await url.PostAndParse<OcrResults>(image);
+
+            var dtEnd = DateTime.Now;
+
+            var totalTime = dtEnd.Subtract(dtStart).TotalMilliseconds;
+
+            return result;
+        }
+
         public async Task<VisionResponse> DetectImage(byte[] image)
         {
             var dtStart = DateTime.Now;

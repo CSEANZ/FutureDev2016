@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Sensors;
@@ -30,7 +31,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using CognitiveSampleWindows.Model.Entity;
 using CognitiveSampleWindows.Model.Services;
+using Newtonsoft.Json;
 using Panel = Windows.Devices.Enumeration.Panel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -101,6 +104,11 @@ namespace CognitiveSampleWindows
                 await CleanupCameraAsync();
                 await SetupCamera();
             }
+
+            if (e.Key == VirtualKey.C)
+            {
+                OcrResultOutput.Visibility = Visibility.Collapsed;
+            }
         }
 
         async void _showDialog()
@@ -162,7 +170,7 @@ namespace CognitiveSampleWindows
             {
                 var orderedRes = res.OfType<VideoEncodingProperties>().OrderBy(_ => _.Width);
 
-                var selectedRes = orderedRes.FirstOrDefault();
+                var selectedRes = orderedRes.LastOrDefault();
 
 
                 await _mediaCapture.VideoDeviceController.SetMediaStreamPropertiesAsync(MediaStreamType.VideoPreview, selectedRes);
@@ -194,7 +202,7 @@ namespace CognitiveSampleWindows
             try
             {
                 await _mediaCapture.InitializeAsync(settings);
-                //_setResolution();
+                _setResolution();
                 _isInitialized = true;
             }
             catch (UnauthorizedAccessException)
@@ -363,13 +371,24 @@ namespace CognitiveSampleWindows
 
         }
 
+        private static int _currentDevice = 0;
+
         private static async Task<DeviceInformation> FindCameraDeviceByPanelAsync(Windows.Devices.Enumeration.Panel desiredPanel)
         {
             // Get available devices for capturing pictures
             var allVideoDevices = await DeviceInformation.FindAllAsync(DeviceClass.VideoCapture);
 
             // Get the desired camera by panel
-            DeviceInformation desiredDevice = allVideoDevices.FirstOrDefault(x => x.EnclosureLocation != null && x.EnclosureLocation.Panel == desiredPanel);
+            //DeviceInformation desiredDevice = allVideoDevices.FirstOrDefault(x => x.EnclosureLocation != null && x.EnclosureLocation.Panel == desiredPanel);
+
+            if (_currentDevice >= allVideoDevices.Count)
+            {
+                _currentDevice = 0;
+            }
+
+            var desiredDevice = allVideoDevices[_currentDevice];
+
+            _currentDevice++;
 
             // If there is no device mounted on the desired panel, return the first device found
             return desiredDevice ?? allVideoDevices.FirstOrDefault();
@@ -428,11 +447,11 @@ namespace CognitiveSampleWindows
             _doCap();
         }
 
-        async void _doCap()
+        async void _doCap(bool ocr = false)
         {
             ProgressRing.IsActive = true;
             ResultText.Text = "";
-
+            OcrResultOutput.Visibility = Visibility.Collapsed;
             _speechService.DoSpeech("okay let me see...", this.SpeechElement);
             try
             {
@@ -447,25 +466,71 @@ namespace CognitiveSampleWindows
 
                 var service = new VisionService(_settings);
 
-                var result = await service.DetectImage(bytes);
-
-                ProgressRing.IsActive = false;
-
-                var description = result?.description?.captions?.FirstOrDefault()?.text;
-
-                if (description != null)
+                if (ocr)
                 {
-                    description = "it's " + description;
-                    _speechService.DoSpeech(description, this.SpeechElement);
-                    ResultText.Text = description;
-                }
+                    var result = await service.OcrImage(bytes);
 
+                    ProgressRing.IsActive = false;
+
+                    var resultText = JsonConvert.SerializeObject(result);
+
+                    OcrResultOutput.Text = $"{LogOcrResults(result)} \r\n\r\n {resultText}";
+                    OcrResultOutput.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    var result = await service.DetectImage(bytes);
+
+                    ProgressRing.IsActive = false;
+
+                    var description = result?.description?.captions?.FirstOrDefault()?.text;
+
+                    if (description != null)
+                    {
+                        description = "it's " + description;
+                        _speechService.DoSpeech(description, this.SpeechElement);
+                        ResultText.Text = description;
+                    }
+                }
 
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
+        }
+
+        private string LogOcrResults(OcrResults results)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            if (results != null && results.Regions != null)
+            {
+                stringBuilder.Append("Text: ");
+                stringBuilder.AppendLine();
+                foreach (var item in results.Regions)
+                {
+                    foreach (var line in item.Lines)
+                    {
+                        foreach (var word in line.Words)
+                        {
+                            stringBuilder.Append(word.Text);
+                            stringBuilder.Append(" ");
+                        }
+
+                        stringBuilder.AppendLine();
+                    }
+
+                    stringBuilder.AppendLine();
+                }
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        private void Ocr_OnClick(object sender, RoutedEventArgs e)
+        {
+            _doCap(true);
         }
     }
 }
